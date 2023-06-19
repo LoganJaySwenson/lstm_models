@@ -1,0 +1,11 @@
+colname,varname,variable,units
+precipitation_amount,pr,daily_precipitation_amount,mm
+maximum_relative_humidity,rmax,daily_maximum_relative_humidity,%
+minimum_relative_humidity,rmin,daily_minimum_relative_humidity,%
+specific_humidity,sph,daily_mean_specific_humidity,kg/kg
+shortwave_radiation,th,daily_mean_shortwave_radiation_at_surface,W m-2
+minimum_temperature,tmmn,daily_minimum_temperature,K
+maximum_temperature,tmmx,daily_maximum_temperature,K
+wind_speed,vs,daily_mean_wind_speed,m/s
+reference_evapotranspiration_alfalfa,etr,daily_mean_reference_evapotranspiration_alfalfa,mm
+reference_evapotranspiration_grass,pet,daily_mean_reference_evapotranspiration_grass,mm
