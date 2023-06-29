@@ -1,7 +1,6 @@
 # Data + Clean @ multiple sites
 library(sf)
 library(raster)
-library(leaflet)
 library(lubridate)
 library(tidyverse)
 
@@ -126,6 +125,6 @@ for (i in 1:length(site_no)) {
   
   file_name <- paste0(dir_save, "/", site_name, ".csv")
   
-  write.csv(results_wide[[site_name]], file = file_name, row.names = F)
+  write_csv(results_wide[[site_name]], file = file_name)
   
 }

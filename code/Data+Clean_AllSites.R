@@ -42,13 +42,14 @@ sites <- sites %>%
 flow <- as_tibble(readNWISdv(siteNumber = sites$site_no, parameterCd = "00060")) %>%
   renameNWISColumns() %>%
   rename_with(.cols = everything(), tolower) %>%
-  select(site_no, date, flow) 
+  select(site_no, date, flow) %>%
+  pivot_wider(names_from = site_no, values_from = flow)
 
-flow <- inner_join(flow, select(sites, site_no, drainage_area), by = "site_no") %>% # drainage area (square meters)
-  mutate(flow = flow * 0.028316847 * 86400 / drainage_area * 1000) %>% # cfs to mm/d
-  select(-drainage_area) %>%
-  pivot_wider(names_from = site_no, values_from = flow) %>%
-  arrange(date)
+#flow <- inner_join(flow, select(sites, site_no, drainage_area), by = "site_no") %>% # drainage area (square meters)
+  #mutate(flow = flow * 0.028316847 * 86400 / drainage_area * 1000) %>% # cfs to mm/d
+  #select(-drainage_area) %>%
+  #pivot_wider(names_from = site_no, values_from = flow) %>%
+  #arrange(date)
 
 # Find start and end dates for each stream gage
 start_dates <- flow %>% 
@@ -65,8 +66,8 @@ sites <- inner_join(sites, end_dates, by = "site_no")
 head(sites)
 head(flow)
 
-write.csv(sites, "data/Gages.csv", row.names = F)
-write.csv(flow, "data/Gages_Flow.csv", row.names = F)
+write_csv(sites, "data/Gages.csv")
+write_csv(flow, "data/Gages_Flow.csv")
 
 
 
